@@ -7,90 +7,26 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/app.js":
 /*!********************!*\
   !*** ./src/app.js ***!
   \********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./component */ \"./src/component.js\");\n\n\ndocument.body.appendChild((0,_component__WEBPACK_IMPORTED_MODULE_0__[\"default\"])());\n\n//# sourceURL=webpack://npm-package/./src/app.js?");
-
-/***/ }),
-
-/***/ "./src/component.js":
-/*!**************************!*\
-  !*** ./src/component.js ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((text = \"Hello, Webpack!\") => {\n    const element = document.createElement(\"h1\");\n  \n    element.innerHTML = text;\n  \n    return element;\n  });\n\n//# sourceURL=webpack://npm-package/./src/component.js?");
+eval("\nconst button = document.querySelector('.btn-primary');\n\nfunction deleteOldSearch() {\n    const oldSearches = document.querySelectorAll('.book-item')\n    oldSearches.forEach(searchResult => {\n        searchResult.remove()\n    })\n}\n\nfunction appendBookDescription(bookKey, newDiv) {\n    console.log('fetching:' + 'https://openlibrary.org' + bookKey + '.json')\n    fetch('https://openlibrary.org' + bookKey + '.json')\n        .then(response => response.json())\n        .then(data => { \n            const newP = document.createElement('p');\n            newP.innerHTML = data.description;\n            newDiv.appendChild(newP);\n        });\n}\n\n\nbutton.addEventListener('click', (event) => {\n    event.preventDefault();\n    deleteOldSearch();\n    console.log('search begun')\n    const searchCategory = document.querySelector('.search-input').value;\n    \n    fetch('https://openlibrary.org/subjects/' + searchCategory + '.json')\n        .then(response => response.json())\n        .then(data => {\n            data.works.forEach(book => {\n                const newDiv = document.createElement ('div')\n                const newH = document.createElement('h3');\n                newH.innerHTML = book.title;\n                newDiv.classList.add('book-item')\n                newDiv.id = book.key\n                newDiv.addEventListener('click', () => {\n                    appendBookDescription(book.key,newDiv)\n                });\n                document.body.appendChild(newDiv);\n                const newAuthorP = document.createElement('p');\n                newDiv.appendChild(newH)\n                if (book.authors) {\n                    const authorNames = book.authors.map(author => author.name);\n                    const newAuthorP = document.createElement('p');\n                    newAuthorP.innerText = authorNames.join(', ');\n                    newDiv.appendChild(newAuthorP);\n                }\n            });\n            console.log('search over');\n        });\n\n    \n});\n\n\n//# sourceURL=webpack://npm-package/./src/app.js?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/app.js");
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./src/app.js"]();
 /******/ 	
 /******/ })()
 ;
