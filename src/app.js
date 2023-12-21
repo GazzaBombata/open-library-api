@@ -40,11 +40,29 @@ button.addEventListener('click', (event) => {
     deleteOldSearch();
     console.log('search begun')
     const searchCategory = document.querySelector('.search-input').value;
-    console.log('https://openlibrary.org/subjects/' + searchCategory + '.json')
+    console.log(searchCategory)
+    if (searchCategory === "") {
+        const newDiv = document.createElement ('div')
+        const newH = document.createElement('h3');
+        newH.innerHTML = 'Please search a a category and press Enter';
+        newDiv.classList.add('book-item')
+        document.getElementById('items-container').appendChild(newDiv);
+        newDiv.appendChild(newH)
+        return
+    }
     
     fetch('https://openlibrary.org/subjects/' + searchCategory + '.json')
         .then(response => response.json())
         .then(data => {
+            if (data.works[1] == undefined) {
+                const newDiv = document.createElement ('div')
+                const newH = document.createElement('h3');
+                newH.innerHTML = 'No results for the inserted category!';
+                newDiv.classList.add('book-item')
+                document.getElementById('items-container').appendChild(newDiv);
+                newDiv.appendChild(newH)
+                return
+            }
             data.works.forEach(book => {
                 const newDiv = document.createElement ('div')
                 const newH = document.createElement('h3');
