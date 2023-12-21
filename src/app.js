@@ -10,12 +10,27 @@ function deleteOldSearch() {
 
 function appendBookDescription(bookKey, newDiv) {
     console.log('fetching:' + 'https://openlibrary.org' + bookKey + '.json')
+    const divToBeChecked = document.getElementById(bookKey)
+    if (newDiv.querySelector('.description') != undefined) {
+        newDiv.querySelector('.custom-button').innerHTML= 'Expand'
+        newDiv.querySelector('.description').remove();
+        return
+    }
+    newDiv.querySelector('.custom-button').innerHTML= 'Loading'
     fetch('https://openlibrary.org' + bookKey + '.json')
         .then(response => response.json())
         .then(data => { 
             const newP = document.createElement('p');
-            newP.innerHTML = data.description;
+            newP.classList.add('description')
+            if (data.description) {
+                
+                newP.innerHTML = (typeof data.description === 'object') ? data.description.value : data.description;
+            } else {
+                
+                newP.innerHTML = 'No description provided in OpenLibrary.';
+            }
             newDiv.appendChild(newP);
+            newDiv.querySelector('.custom-button').innerHTML= 'Reduce'
         });
 }
 
@@ -25,6 +40,7 @@ button.addEventListener('click', (event) => {
     deleteOldSearch();
     console.log('search begun')
     const searchCategory = document.querySelector('.search-input').value;
+    console.log('https://openlibrary.org/subjects/' + searchCategory + '.json')
     
     fetch('https://openlibrary.org/subjects/' + searchCategory + '.json')
         .then(response => response.json())
@@ -32,13 +48,16 @@ button.addEventListener('click', (event) => {
             data.works.forEach(book => {
                 const newDiv = document.createElement ('div')
                 const newH = document.createElement('h3');
+                const newButton = document.createElement('button')
+                newButton.innerHTML = 'Expand'
+                newButton.classList.add('custom-button')
                 newH.innerHTML = book.title;
                 newDiv.classList.add('book-item')
                 newDiv.id = book.key
-                newDiv.addEventListener('click', () => {
+                newButton.addEventListener('click', () => {
                     appendBookDescription(book.key,newDiv)
                 });
-                document.body.appendChild(newDiv);
+                document.getElementById('items-container').appendChild(newDiv);
                 const newAuthorP = document.createElement('p');
                 newDiv.appendChild(newH)
                 if (book.authors) {
@@ -47,6 +66,7 @@ button.addEventListener('click', (event) => {
                     newAuthorP.innerText = authorNames.join(', ');
                     newDiv.appendChild(newAuthorP);
                 }
+                newDiv.appendChild(newButton)
             });
             console.log('search over');
         });

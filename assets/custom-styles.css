@@ -1,3 +1,82 @@
 body {
     background-color: white;
 }
+
+h1, h2, h3 { 
+    font-family: 'Roboto Slab', serif; 
+}
+
+p { 
+    font-family: 'Open Sans', sans-serif; 
+}
+
+.quote { 
+    font-family: 'Great Vibes', cursive; 
+}
+
+main { 
+    text-align: center; 
+}
+
+.form-custom { 
+    border-radius: 20px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+    max-width: 90%;
+    border: 1px;
+    min-width: 300px;
+    border-color: black;
+    width: auto;
+}
+
+.book-item { 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+    margin-bottom: 20px; 
+    padding: 10px; 
+    border-radius: 10px;
+    text-align: left;
+}
+.book-item h3 { 
+    font-size: 1.2em; 
+    margin-bottom: 5px; 
+}
+.book-item p { 
+    font-size: 1em; 
+    font-family: 'Open Sans', sans-serif; 
+    margin-bottom: 5px; 
+    margin-top: 5px;
+}
+.custom-button:hover { 
+    background-color: brown; 
+    border-color: brown;
+}
+.custom-button {
+    font-family: 'Open Sans', sans-serif; 
+    background-color: sandybrown;
+    border-color: sandybrown;
+    outline-color: none;
+    font-weight: 600;
+    color: white;
+}
+
+.hero {
+    background-image: url(images/paper-background.jpg);
+}
+
+.custom-button:active { 
+    background-color: brown; 
+    border-color: brown;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input:focus {
+    outline: 2px solid sandybrown; 
+    background-color: rgba(244, 165, 96, 0.565);
+}
+
+.custom-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+

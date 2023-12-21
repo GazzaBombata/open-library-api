@@ -2,11 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Search an Open library book</title>
+    <title>Daily reader</title>
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/3d-fluency/94/reading.png">
+    
      <!-- Bootstrap CSS -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
      <!-- Google Fonts -->
-     <link href="https://fonts.googleapis.com/css?family=Hedvig+Letters+Serif|Lato" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Open+Sans:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
      <!-- Font Awesome icons -->
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
  
@@ -15,10 +18,26 @@
   <script defer src="main.bundle.js"></script></head>
   <body>
     <main>
-      <form class="container">
-        <input class="form-control me-2 text search-input" name="search_input" placeholder="Category Search" required type="text">
-        <button class="btn btn-primary" type="submit">Send</button>
-      </form>
+      <div class="hero py-3 mb-3">
+        <div class="container d-flex flex-column justify-content-center py-3">
+          <h2 class="quote">“I declare after all there is no enjoyment like reading! How much sooner one tires of any thing than of a book! 
+            — When I have a house of my own, I shall be miserable if I have not an excellent library.”<br/>― Jane Austen</h2>
+        </div>
+      </div>
+
+      <div class="container d-flex flex-column justify-content-center"> 
+        <h1 class="mb-3">What are you going to read today?</h1>
+        <p>Input a reading category in the field below and we will suggest you all the best books for your chosen category!</p>
+        <form class="container d-flex justify-content-center">
+          <input class="form-custom py-1 px-3 me-2 text search-input" name="search_input" placeholder="Category Search" required type="text">
+          <button class="btn btn-primary visually-hidden" type="submit">Send</button>
+        </form>
+      </div>
+
+      <div class="container py-5" id="items-container">
+
+      </div>
+      
     </main>
   </body>
 </html>
